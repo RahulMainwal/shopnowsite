@@ -1,0 +1,156 @@
+* {
+  top: 0;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(250, 250, 250);
+}
+
+/* Header css starting */
+#navbar {
+  position: sticky;
+  left: 0;
+  top: 0;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 1;
+  width: auto;
+}
+
+#header-login-btn {
+  padding: 3px 12px;
+  font-size: 15px;
+  border: 2px solid rgb(105, 105, 105);
+  color: rgb(105, 105, 105);
+}
+
+#header-login-btn:hover {
+  color: white;
+  border: 2px solid #0084c7;
+  background-color: #0084c7;
+}
+/* Header code ending */
+
+/* Footer code starting */
+.container {
+  max-width: 1170px;
+  margin: auto;
+  z-index: 0;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+ul {
+  list-style: none;
+}
+.footer {
+  background-color: #f7f7f7;
+  padding: 70px 0 10px 0;
+}
+.footer-col {
+  width: 50%;
+  padding: 0 15px;
+}
+.footer-col h4 {
+  font-size: 18px;
+  color: black;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+  z-index: 0;
+}
+.footer-col h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-color: black;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 300;
+  color: #a9a9a9;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover {
+  color: black;
+  padding-left: 8px;
+}
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links #facebook:hover {
+  color: #4267b2;
+  background-color: #ffffff;
+}
+.footer-col .social-links #twitter:hover {
+  color: #00bfff;
+  background-color: #ffffff;
+}
+.footer-col .social-links #instagram:hover {
+  color: #ff1493;
+  background-color: #ffffff;
+}
+.footer-col .social-links #github:hover {
+  color: black;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+  .footer-col {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 574px) {
+  .footer-col {
+    width: 100%;
+  }
+}
+/* Footer code ending */
+
+/* Search bar ending */
+
+#scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.uploadLabel {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.uploadButton {
+  display: none;
+}
