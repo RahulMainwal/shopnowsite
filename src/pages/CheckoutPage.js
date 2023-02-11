@@ -31,7 +31,7 @@ const CheckoutPage = () => {
     dispatch(changeCartQty({ cartQty, index }));
   };
 
-  const paymentHandler = async () => {
+  const handlePayment = async () => {
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_SERVER_API}/user/create-order`,
@@ -39,7 +39,6 @@ const CheckoutPage = () => {
           amount: filterProductData
         }
       );
-
       initPayment(data);
     } catch (error) {
       console.log(error);
@@ -48,7 +47,7 @@ const CheckoutPage = () => {
 
   const initPayment = (data) => {
     const options = {
-      key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+      key: process.env.RAZORPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
       name: data.name,
@@ -58,24 +57,20 @@ const CheckoutPage = () => {
         try {
           const resData = await axios.post(
             `${process.env.REACT_APP_SERVER_API}/user/payment-verify`,
-            {
-              response,
-              products: getCartData,
-              loginToken: getUserState.loginToken
-            }
+            response
           );
-
-          if (resData) {
+          if (resData.data) {
             axios
               .post(
                 `${process.env.REACT_APP_SERVER_API}/user/orders/save`,
-                resData.data
+                {response: resData.data,  products: getCartData,
+                  loginToken: getUserState.loginToken}
               )
               .then((res) => {
                 if (res.data.message) {
                   setSuccess(true);
                   window.scrollTo(0, 0);
-                  setPaymentRes(resData.data.response);
+                  setPaymentRes(res.data.message);
                   dispatch(deleteAllFromCart());
                 }
                 if (res.data.error) {
@@ -87,8 +82,7 @@ const CheckoutPage = () => {
               });
           }
         } catch (error) {
-          alert("Somthing went wrong & try again!");
-          setSuccess(false);
+          alert("Something went wrong contact to customer support!");
         }
       },
       theme: {
@@ -100,6 +94,7 @@ const CheckoutPage = () => {
   };
 
   useEffect(() => {
+    
     setLoading(true);
     setProductData(getCartData);
     axios
@@ -388,7 +383,7 @@ const CheckoutPage = () => {
               padding: "6px 25px"
             }}
             onClick={() => {
-              paymentHandler();
+              handlePayment();
             }}
           >
             Make Payment
