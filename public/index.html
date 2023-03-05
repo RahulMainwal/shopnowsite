@@ -83,12 +83,17 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
     ></script>
     <script>
-      function loading() {
+       function loading() {
         setTimeout(() => {
           document.getElementById("root").style.display = "block";
           document.getElementById("landing-loader").style.display = "none";
-        });
+        }, 1000);
       }
+      addEventListener("load", (event) => {
+        if (window.location.pathname === "/") {
+          window.localStorage.setItem("scrollTop", JSON.parse(0));
+        }
+      });
     </script>
   </body>
 </html>
