@@ -6,11 +6,23 @@ import Loader from "./Loader";
 const Products = () => {
   const [fetchProducts, setProducts] = useState([]);
 
+  window.addEventListener("scroll", () => {
+    if (window.location.pathname === "/") {
+      localStorage.setItem("scrollTop", JSON.stringify(window.pageYOffset));
+    }
+  });
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .get(`${process.env.REACT_APP_SERVER_API}/products`)
       .then((res) => {
         setProducts(res.data);
+        if (fetchProducts) {
+          setTimeout(() => {
+            window.scrollBy(0, JSON.parse(localStorage.getItem("scrollTop")));
+          }, 500);
+        }
       })
       .catch((err) => {
         console.log(err);
