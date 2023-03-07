@@ -154,3 +154,12 @@ ul {
 .uploadButton {
   display: none;
 }
+
+#newProductContainer {
+  content: "";
+  border-top: 100vh solid #008ce6;
+  border-right: 97vw solid transparent;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}
