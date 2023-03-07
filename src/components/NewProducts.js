@@ -31,6 +31,7 @@ export const NewProducts = () => {
       .catch((err) => {
         console.log(err);
       });
+    setWindowWidth(window.innerWidth);
   }, []);
 
   window.addEventListener("resize", () => {
