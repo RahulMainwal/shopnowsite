@@ -9,6 +9,8 @@ import { removeLoginToken } from "../store/slices/UserSlice";
 function Header() {
   const [activeValue, setActiveValue] = useState("/");
   const [user, setUser] = useState("");
+  const [windowWidth, setWindowWidth] = useState("");
+  const [navbarHeightLoc, setNavbarHeightLoc] = useState(false);
   const getState = useSelector((state) => {
     return state.carts;
   });
@@ -50,12 +52,49 @@ function Header() {
     );
   }, [getState, getUserState]);
 
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 334) {
+      setNavbarHeightLoc(true);
+    } else {
+      setNavbarHeightLoc(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    setWindowWidth(window.innerWidth);
+  });
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+    <nav
+      className={
+        navbarHeightLoc === true
+          ? "navbar navbar-expand-lg navbar-light bg-white"
+          : "navbar navbar-expand-lg navbar-light"
+      }
+      id="navbar"
+      style={
+        getUrlLocation.pathname.toString() === "/"
+          ? {
+              background: "inherit",
+              backdropFilter: "blur(25px)"
+            }
+          : {
+              backgroundColor: "white"
+            }
+      }
+    >
       <div className="container-fluid">
         <Link to="/" style={{ color: "black", marginTop: "8px" }}>
           <h4
-            style={activeValue === "/" ? { color: "#0084c7" } : { color: "" }}
+            style={
+              activeValue === "/"
+                ? navbarHeightLoc
+                  ? getUrlLocation.pathname.toString() === "/"
+                    ? { color: "#0084c7" }
+                    : { color: "gray" }
+                  : { color: "white" }
+                : { color: "gray" }
+            }
           >
             Shopnow
           </h4>
@@ -64,7 +103,15 @@ function Header() {
           <Link className="text-reset me-3" to="/search">
             <i
               style={
-                activeValue === "/search" ? { color: "#0084c7" } : { color: "" }
+                activeValue === "/"
+                  ? navbarHeightLoc
+                    ? getUrlLocation.pathname.toString() === "/"
+                      ? { color: "gray" }
+                      : { color: "#0084c7" }
+                    : { color: "white" }
+                  : activeValue === "/search"
+                  ? { color: "#0084c7" }
+                  : { color: "" }
               }
               className="fa-solid fa-magnifying-glass"
             ></i>
@@ -77,7 +124,15 @@ function Header() {
             >
               <i
                 style={
-                  activeValue === "/cart" ? { color: "#0084c7" } : { color: "" }
+                  activeValue === "/"
+                    ? navbarHeightLoc
+                      ? getUrlLocation.pathname.toString() === "/"
+                        ? { color: "gray" }
+                        : { color: "#0084c7" }
+                      : { color: "white" }
+                    : activeValue === "/cart"
+                    ? { color: "#0084c7" }
+                    : { color: "" }
                 }
                 className="fa-solid fa-shopping-cart"
               ></i>
@@ -92,7 +147,22 @@ function Header() {
               <Link to="/sign-in">
                 <button
                   style={
-                    activeValue === "/sign-in"
+                    activeValue === "/"
+                      ? navbarHeightLoc
+                        ? getUrlLocation.pathname.toString() === "/"
+                          ? { color: "gray" }
+                          : { color: "#0084c7" }
+                        : windowWidth < 400
+                        ? {
+                            color: "white",
+                            border: "2px solid white"
+                          }
+                        : {
+                            backgroundColor: "#0084c7",
+                            color: "white",
+                            border: "2px solid #0084c7"
+                          }
+                      : activeValue === "/sign-in"
                       ? {
                           backgroundColor: "#0084c7",
                           color: "white",
