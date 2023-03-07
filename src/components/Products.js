@@ -30,10 +30,11 @@ const Products = () => {
   }, []);
 
   return fetchProducts.length === 0 ? (
-    <Loader />
+    // <Loader />
+    ""
   ) : (
-    <div style={{ margin: "20px 15px 20px 15px" }}>
-      <h5>Products</h5>
+    <div style={{ margin: "50px 15px 20px 15px" }}>
+      <h5 style={{ textAlign: "center", fontSize: "30px" }}>Products</h5>
       <div>
         <div className="row row-cols-2 row-cols-sm-3 row-cols-lg-5 g-2 g-lg-3">
           {fetchProducts.map((x, i) => (
