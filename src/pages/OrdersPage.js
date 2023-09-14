@@ -72,36 +72,42 @@ const OrdersPage = () => {
             >
               <div
                 style={{
+                  width: "auto",
+                  textAlign: "center"
+                }}
+              >
+                {x.products.map((elem, index) => (
+                  <div key={elem._id}>
+                    <img
+                      src={elem.product.Productsimages[0].imageUrl}
+                      alt="product"
+                      style={{ width: "100px" }}
+                    />
+                    {x.products[index] === x.products[x.products.length - 1] ? (
+                      ""
+                    ) : (
+                      <hr />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <br />
+
+              <div
+                style={{
                   display: "flex",
                   textAlign: "center",
                   width: "100%",
                   justifyContent: "center"
                 }}
               >
-                <div style={{ width: "auto", textAlign: "start" }}>
-                  {x.products.map((elem, index) => (
-                    <div key={elem._id}>
-                      <img
-                        src={elem.product.Productsimages[0].imageUrl}
-                        alt="product"
-                        style={{ width: "50px" }}
-                      />
-                      {x.products[index] ===
-                      x.products[x.products.length - 1] ? (
-                        ""
-                      ) : (
-                        <hr />
-                      )}
-                    </div>
-                  ))}
-                </div>
                 <div
                   style={{
                     width: "100%",
                     top: "0",
                     bottom: "0",
                     margin: "auto",
-                    textAlign: "end",
+                    textAlign: "center",
                     wordBreak: "break-word"
                   }}
                 >
@@ -109,7 +115,7 @@ const OrdersPage = () => {
                     <b>Order Placed</b>
                   </div>
 
-                  <div style={{ textAlign: "end" }}>
+                  <div style={{ textAlign: "center" }}>
                     <div>
                       order Id: <br />
                       <b>{x.response.razorpay_order_id}</b>
