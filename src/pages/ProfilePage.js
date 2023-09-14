@@ -122,31 +122,6 @@ const ProfilePage = () => {
               </label>
             </b>
           </div>
-          <div style={{ textAlign: "center", margin: "50px 0" }}>
-          <span
-                  style={{
-                    padding: "50px 65px",
-                    borderRadius: "50%",
-                    backgroundColor: "#0084c7",
-                    color: "white",
-                    fontSize: "50px"
-                  }}
-                >
-                  {fName.charAt(0)}
-                </span>
-          </div>
-          <div style={{ textAlign: "center", marginTop: "5px" }}>
-            <label className="uploadLabel">
-              <input
-                type="file"
-                id="form3Example1"
-                name="form3Example1"
-                className="uploadButton"
-                accept="image/*"
-              />
-              Choose Avatar
-            </label>
-          </div>
         </div>
 
         <div className="form mb-4">
